@@ -4,30 +4,10 @@
     AjaxOptions ajaxOpts = new AjaxOptions { OnSuccess = "processResponse" };
 }
 <h4>Book an Appointment</h4>
-<link rel="stylesheet" href="~/Content/CustomStyles.css" />
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-<script type="text/javascript">
-    function processResponse(appt) {
-        $('#successClientName').text(appt.ClientName);
-        $('#successDate').text(processDate(appt.Date));
-        switchViews();
-    }
-    function processDate(dateString) {
-        return new Date(parseInt(dateString.substr(6, dateString.length - 8))).toDateString();
-    }
-    function switchViews() {
-        var hidden = $('.hidden');
-        var visible = $('.visible');
-        hidden.removeClass("hidden").addClass("visible");
-        visible.removeClass("visible").addClass("hidden");
-    }
-    $(document).ready(function () {
-        $('#backButton').click(function (e) { switchViews(); });
-    }); 
-</script>
+@section scripts{
+<script src="~/Scripts/Home/MakeBooking.js" type="text/javascript"></script>
+}
+
 <div id="formDiv" class="visible">   
     @using (Ajax.BeginForm(ajaxOpts)) {     
         @Html.ValidationSummary(true)     
